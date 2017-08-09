@@ -3,3 +3,5 @@ exclude: [CNAME, README.md]
 permalink: /:title ## disables post output
 timezone: null
 lsi: false
+
+theme: jekyll-theme-minimal
