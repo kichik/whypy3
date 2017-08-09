@@ -51,86 +51,9 @@
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
             <h5 class="text-right"><strong id="title"></strong></h5>
-<pre data-title="Suppress exceptions" data-repl="https://repl.it/KDQ3/2"><code class="language-python">from contextlib import suppress
-
-d = {1: 'one', 2: 'two'}
-with suppress(KeyError):
-  print(d[3])
-
-### is way easier to read than:
-
-try:
-  print(d[3])
-except KeyError:
-  pass</code></pre>
-<pre data-title="Advanced unpacking" data-repl="https://repl.it/KDQ3/3"><code class="language-python">a, b, *rest = range(10)
-print(a)     # prints 0
-print(b)     # prints 1
-print(rest)  # prints [2, 3, 4, 5, 6, 7, 8, 9]
-
-# or even
-
-a, *rest, b = range(10)
-print(rest)  # prints [1, 2, 3, 4, 5, 6, 7, 8]</code></pre>
-<pre data-title="Keyword only arguments" data-repl="https://repl.it/KDQ3/4"><code class="language-python">a, b, *rest = range(10)
-def f(a, b, *args, option=True):
-  print(option)
-
-f(a, b, False)        # doesn't modify option
-f(a, b, option=False) # explictly modify option</code></pre>
-<pre data-title="yield from generator" data-repl="https://repl.it/KDQ3/5"><code class="language-python">def weird_range():
-  yield from range(5)
-  yield from range(5)
-  
-for i in weird_range():
-  print(i)</code></pre>
-<pre data-title="ipaddress" data-repl="https://repl.it/KDQ3/6"><code class="language-python">from ipaddress import ip_address
-ip4 = ip_address('192.168.0.1')
-print('packed', ip4.packed)
-print('is private', ip4.is_private)
-ip6 = ip_address('2001:db8::')
-print('exploded', ip6.exploded)
-print('is multicast', ip6.is_multicast)
-</code></pre>
-<pre data-title="LRU decorator" data-repl="https://repl.it/KDQ3/7"><code class="language-python">from functools import lru_cache
-
-counter = 0
-
-@lru_cache(maxsize=2)
-def get_something(i):
-    global counter
-    counter += 1
-    return counter
-
-print(get_something(0))  # 1
-print(get_something(0))  # 1
-print(get_something(1))  # 2
-print(get_something(0))  # 1
-print(get_something(2))  # 3
-print(get_something(3))  # 4
-print(get_something(4))  # 5
-print(get_something(0))  # 6</code></pre>
-<pre data-title="Enum" data-repl="https://repl.it/KDQ3/8"><code class="language-python">from enum import Enum
-class Color(Enum):
-    red = 1
-    green = 2
-    blue = 3
-
-print(Color.red.value)  # 1
-print(Color(2))         # Color.green</code></pre>
-<pre data-title="pathlib" data-repl="https://repl.it/KDQ3/9"><code class="language-python">from pathlib import Path
-
-directory = Path("/etc")
-filepath = directory / "test_file.txt"
-
-if not filepath.exists():
-    Path("/tmp/some/folder/somewhere").mkdir(parents=True)</code></pre>
-<pre data-title="secrets" data-repl="https://repl.it/KDQ3/10"><code class="language-python">import secrets
-
-print(secrets.token_bytes(16))
-print(secrets.token_hex(16))
-print(secrets.token_urlsafe(16))
-print(secrets.randbelow(10))</code></pre>
+{% for post in site.posts %}
+<pre data-title="{{ post.title }}" data-repl="{{ post.repl }}">{post.content}</pre>
+{% endfor %}
 <!-- TODO asyncio -->
         </div>
     </div>
