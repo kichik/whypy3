@@ -52,7 +52,7 @@
         <div class="col-sm-8 col-sm-offset-2">
             <h5 class="text-right"><strong id="title"></strong></h5>
 {% for post in site.posts %}
-<pre data-title="{{ post.title }}" data-repl="{{ post.repl }}">{post.content}</pre>
+<pre data-title="{{ post.title }}" data-repl="{{ post.repl }}">{{ post.content }</pre>
 {% endfor %}
 <!-- TODO asyncio -->
         </div>
