@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Python 3 is awesome. Upgrade today!">
+    <meta name="keywords" content="python,2,3,upgrade,why">
+    <meta property="og:title" content="Why Python 3?">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://whypy3.github.io/">
+    <meta property="og:description" content="Python 3 is awesome. Upgrade today!">
+    <!-- <meta property="og:image" content="..."> -->
+    <title>Why Python 3?</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css">
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+    <div class="page-header">
+        <div class="pull-right">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-text="Tired of AV false positives?"
+               data-show-count="true">Tweet</a>
+        </div>
+        <h1>Why Python 3?</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <p class="lead">All the cool Python 3 features that'll make you switch today!</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <button class="btn btn-success" id="another">
+                <span class="glyphicon glyphicon-refresh"></span> Another!
+            </button>
+            <a class="btn btn btn-info" id="try">
+                <span class="glyphicon glyphicon-play"></span> Try it out
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <h5 class="text-right"><strong id="title"></strong></h5>
+<pre data-title="Suppress exceptions" data-repl="https://repl.it/KDQ3/2"><code class="language-python">from contextlib import suppress
+
+d = {1: 'one', 2: 'two'}
+with suppress(KeyError):
+  print(d[3])
+
+### is way easier to read than:
+
+try:
+  print(d[3])
+except KeyError:
+  pass</code></pre>
+<pre data-title="Advanced unpacking" data-repl="https://repl.it/KDQ3/3"><code class="language-python">a, b, *rest = range(10)
+print(a)     # prints 0
+print(b)     # prints 1
+print(rest)  # prints [2, 3, 4, 5, 6, 7, 8, 9]
+
+# or even
+
+a, *rest, b = range(10)
+print(rest)  # prints [1, 2, 3, 4, 5, 6, 7, 8]</code></pre>
+<pre data-title="Keyword only arguments" data-repl="https://repl.it/KDQ3/4"><code class="language-python">a, b, *rest = range(10)
+def f(a, b, *args, option=True):
+  print(option)
+
+f(a, b, False)        # doesn't modify option
+f(a, b, option=False) # explictly modify option</code></pre>
+<pre data-title="yield from generator" data-repl="https://repl.it/KDQ3/5"><code class="language-python">def weird_range():
+  yield from range(5)
+  yield from range(5)
+  
+for i in weird_range():
+  print(i)</code></pre>
+<pre data-title="ipaddress" data-repl="https://repl.it/KDQ3/6"><code class="language-python">from ipaddress import ip_address
+ip4 = ip_address('192.168.0.1')
+print('packed', ip4.packed)
+print('is private', ip4.is_private)
+ip6 = ip_address('2001:db8::')
+print('exploded', ip6.exploded)
+print('is multicast', ip6.is_multicast)
+</code></pre>
+<pre data-title="LRU decorator" data-repl="https://repl.it/KDQ3/7"><code class="language-python">from functools import lru_cache
+
+counter = 0
+
+@lru_cache(maxsize=2)
+def get_something(i):
+    global counter
+    counter += 1
+    return counter
+
+print(get_something(0))  # 1
+print(get_something(0))  # 1
+print(get_something(1))  # 2
+print(get_something(0))  # 1
+print(get_something(2))  # 3
+print(get_something(3))  # 4
+print(get_something(4))  # 5
+print(get_something(0))  # 6</code></pre>
+<pre data-title="Enum" data-repl="https://repl.it/KDQ3/8"><code class="language-python">from enum import Enum
+class Color(Enum):
+    red = 1
+    green = 2
+    blue = 3
+
+print(Color.red.value)  # 1
+print(Color(2))         # Color.green</code></pre>
+<pre data-title="pathlib" data-repl="https://repl.it/KDQ3/9"><code class="language-python">from pathlib import Path
+
+directory = Path("/etc")
+filepath = directory / "test_file.txt"
+
+if not filepath.exists():
+    Path("/tmp/some/folder/somewhere").mkdir(parents=True)</code></pre>
+<pre data-title="secrets" data-repl="https://repl.it/KDQ3/10"><code class="language-python">import secrets
+
+print(secrets.token_bytes(16))
+print(secrets.token_hex(16))
+print(secrets.token_urlsafe(16))
+print(secrets.randbelow(10))</code></pre>
+<!-- TODO asyncio -->
+        </div>
+    </div>
+    <div class="row">
+        <hr>
+        <p>Got more? Submit a <a href="https://github.com/kichik/whypy3.github.io/">pull request</a>.</p>
+        <p>Created by <a href="https://kichik.com">Amir Szekely</a>. Inspired by Aaron Meurer's <a href="http://www.asmeurer.com/python3-presentation/slides.html">list</a>.</p>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-python.min.js"></script>
+<script>
+    var pres = $("pre");
+
+    function randomSnippet() {
+        var random = Math.floor( Math.random() * pres.length );
+        setSnippet(random);
+    }
+
+    function setSnippet(index) {
+        pres.hide();
+        var pre = pres.eq(index);
+        pre.show();
+        $("#try").attr("href", pre.data("repl"));
+        $("#title").text(pre.data("title"));
+        window.location.hash = "#" + index;
+    }
+
+    $("#another").click(randomSnippet);
+    if (window.location.hash) {
+        setSnippet(parseInt(window.location.hash.substr(1)));
+    } else {
+        randomSnippet();
+    }
+</script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</body>
+</html>
