@@ -53,7 +53,7 @@
         <div class="col-sm-8 col-sm-offset-2">
             <h5 class="text-right"><strong id="title"></strong></h5>
 {% for post in site.posts %}
-<pre data-title="{{ post.title }}" data-repl="{{ post.repl }}"><code>{{ post.content }}</code></pre>
+<span class="snippet" data-title="{{ post.title }}" data-repl="{{ post.repl }}">{{ post.content }}</span>
 {% endfor %}
 <!-- TODO asyncio -->
         </div>
@@ -72,19 +72,19 @@
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
 <script>
-    var pres = $("pre");
+    var snippets = $(".snippet");
 
     function randomSnippet() {
-        var random = Math.floor( Math.random() * pres.length );
+        var random = Math.floor( Math.random() * snippets.length );
         setSnippet(random);
     }
 
     function setSnippet(index) {
-        pres.hide();
-        var pre = pres.eq(index);
-        pre.show();
-        $("#try").attr("href", pre.data("repl"));
-        $("#title").text(pre.data("title"));
+        snippets.hide();
+        var snippet = snippets.eq(index);
+        snippet.show();
+        $("#try").attr("href", snippet.data("repl"));
+        $("#title").text(snippet.data("title"));
         window.location.hash = "#" + index;
     }
 
