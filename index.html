@@ -138,7 +138,7 @@
 
     function randomSnippet() {
         var random = Math.floor( Math.random() * snippets.length );
-        setSnippet(snippets.eq(index));
+        setSnippet(snippets.eq(random));
     }
 
     function setSnippet(snippet) {
@@ -151,7 +151,12 @@
 
     $("#another").click(randomSnippet);
     if (window.location.hash) {
-        setSnippet(snippets.find(window.location.hash));
+        var snippet = snippets.find(window.location.hash);
+        if (snippet.length > 0) {
+            setSnippet(snippet);
+        } else {
+            randomSnippet();
+        }
     } else {
         randomSnippet();
     }
