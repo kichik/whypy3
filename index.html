@@ -114,7 +114,7 @@
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
             <h5 class="text-right"><strong id="title"></strong></h5>
-{% for post in site.posts reversed %}
+{% for post in site.posts %}
 <span class="snippet" data-title="{{ post.title }}" data-repl="{{ post.repl }}" id="{{ post.slug }}">{{ post.content }}</span>
 {% endfor %}
 <!-- TODO asyncio -->
@@ -138,21 +138,20 @@
 
     function randomSnippet() {
         var random = Math.floor( Math.random() * snippets.length );
-        setSnippet(random);
+        setSnippet(snippets.eq(index));
     }
 
-    function setSnippet(index) {
+    function setSnippet(snippet) {
         snippets.hide();
-        var snippet = snippets.eq(index);
         snippet.show();
         $("#try").attr("href", snippet.data("repl"));
         $("#title").text(snippet.data("title"));
-        window.location.hash = "#" + index;
+        window.location.hash = "#" + snippet.attr("id");
     }
 
     $("#another").click(randomSnippet);
     if (window.location.hash) {
-        setSnippet(parseInt(window.location.hash.substr(1)));
+        setSnippet(snippets.find(window.location.hash));
     } else {
         randomSnippet();
     }
