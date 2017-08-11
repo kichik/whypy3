@@ -3,7 +3,10 @@ title: Annotations
 repl: https://repl.it/KGI3/2
 ---
 {% highlight python %}
-# use mypy to check type errors
+# add type annotations to variables, arguments and functions
+# you can later access those programmatically
+
+# you can also use mypy to check for type errors
 # http://mypy-lang.org/
 
 def my_add(a: int, b: int) -> int:
