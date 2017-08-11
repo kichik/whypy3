@@ -151,7 +151,7 @@
 
     $("#another").click(randomSnippet);
     if (window.location.hash) {
-        var snippet = snippets.find(window.location.hash);
+        var snippet = $(window.location.hash);
         if (snippet.length > 0) {
             setSnippet(snippet);
         } else {
