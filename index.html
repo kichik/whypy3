@@ -148,7 +148,7 @@
         $("#try").attr("href", snippet.data("repl"));
         $("#title").text(snippet.data("title"));
         window.location.hash = "#" + snippet.attr("id");
-        if (ga !== undefined) {
+        if (window.ga !== undefined) {
             ga('set', 'page', '/' + window.location.hash);
             ga('send', 'pageview');
         }
