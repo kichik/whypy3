@@ -2,7 +2,7 @@
 title: Annotations
 repl: https://repl.it/KGI3/2
 ---
-{% highlight python %}
+```python
 # add type annotations to variables, arguments and functions
 # you can later access those programmatically
 
@@ -14,4 +14,4 @@ def my_add(a: int, b: int) -> int:
 
 print(my_add(40, 2))  # 42
 print(my_add.__annotations__)  # {'a': <class 'int'>, 'b': <class 'int'>, 'return': <class 'int'>}
-{% endhighlight %}
+```

@@ -2,7 +2,7 @@
 title: ipaddress
 repl: https://repl.it/KDQ3/18
 ---
-{% highlight python %}
+```python
 # built-in ipaddress module that helps you easily deal with IP addresses
 # check type, compare, check against subnets and more with both IPv4 and IPv6
 
@@ -19,4 +19,4 @@ print('is multicast', ip6.is_multicast)
 net = ip_network('192.168.0.0/24')
 print(f'{ip4} in {net} =', ip4 in net)
 print(f'{ip6} in {net} =', ip6 in net)
-{% endhighlight %}
+```

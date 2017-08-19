@@ -2,7 +2,7 @@
 title: Advanced unpacking
 repl: https://repl.it/KDQ3/20
 ---
-{% highlight python %}
+```python
 # easily split lists or iterators into variables
 
 a, b, *rest = range(10)
@@ -21,4 +21,4 @@ l = list(range(10))
 a = l[0]
 rest = l[1:-1]
 b = l[-1]
-{% endhighlight %}
+```
