@@ -17,7 +17,7 @@ print(my_dict)
 from sys import getsizeof
 print(getsizeof(my_dict)) # 368
 
-# in python2 the ordered is not preserved and the memory footprint is greater
+# in python2 the order is not preserved and the memory footprint is greater
 # https://repl.it/KruM/0
 
 print(my_dict)
