@@ -157,6 +157,7 @@
     $("#another").click(function (ev) {
         ev.preventDefault();
         randomSnippet();
+        window.scrollTo(0, 0);
     });
     if (window.location.hash) {
         var snippet = $(window.location.hash);
