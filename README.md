@@ -1,4 +1,4 @@
-# Why Python 3? [whypy3.com](http://whypy3.com/)
+# Why Python 3? [whypy3.com](https://whypy3.com/)
 
 A simple website with a bunch of code samples that should help convince you to switch to Python 3 today.
 
